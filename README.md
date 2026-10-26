@@ -1,5 +1,18 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Registro de vagas
+
+A tela está disponível em `/vagas/registrar`, conforme o frame `4:18328` do Figma.
+Inclui formulário responsivo, campos obrigatórios, validação de salário,
+preenchimento de exemplo e confirmação para descartar os dados ao cancelar.
+O menu pode ser recolhido; os destinos de outras telas estão desabilitados.
+Continuar valida o formulário, mas não publica nem persiste uma vaga:
+revisão, publicação e integração com a API ficam para uma próxima entrega.
+
+Para conferir: execute `npm ci`, `npm run lint` e `npm run build`.
+No navegador, verifique a rota em desktop e celular, envie o formulário vazio,
+preencha o exemplo e teste cancelar com confirmação e sem confirmação.
+
 ## Getting Started
 
 First, run the development server:
