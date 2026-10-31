@@ -1,6 +1,16 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Registro de vagas
+## Telas do representante
+
+Referência local: `tramporapido.fig` (exportação de 27/10/2026).
+
+- `/vagas/registrar`: frame `4:18328`, com data e exemplo demonstrativos do Figma.
+- `/vagas/publicada`: frame `4:18595`, com o resumo e as ações da vaga publicada.
+
+O layout desktop segue o frame de 1200 × 840, com rolagem no formulário longo.
+As duas telas compartilham o cabeçalho, o menu e os estilos. O link Registrar vaga
+funciona; ações para telas futuras permanecem desabilitadas. A página publicada
+usa os dados fictícios do protótipo e não representa confirmação de uma API.
 
 A tela está disponível em `/vagas/registrar`, conforme o frame `4:18328` do Figma.
 Inclui formulário responsivo, campos obrigatórios, validação de salário,
