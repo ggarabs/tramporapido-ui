@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import RegistrationForm from "./registration-form";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Registrar vaga | tramporapido",
@@ -10,5 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function RegisterJobPage() {
-  return <RegistrationForm className={inter.className} />;
+  return <RegistrationForm />;
 }
