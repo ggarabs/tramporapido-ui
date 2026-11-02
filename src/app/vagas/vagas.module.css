@@ -1,0 +1,247 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.topHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.topHeader h1 {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ink, #925807);
+}
+
+.subtext {
+  font-size: 13px;
+  color: #555;
+  margin: 4px 0 0 0;
+}
+
+.btnNewJob {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 16px;
+  background-color: var(--ink, #925807);
+  color: #ffffff;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.btnNewJob:hover {
+  filter: brightness(0.92);
+}
+
+.searchContainer {
+  width: 100%;
+}
+
+.searchInput {
+  width: 100%;
+  height: 44px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #808080;
+  background-color: #ffffff;
+  color: #2d0f0f;
+  font: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.searchInput:focus-visible {
+  outline: 3px solid var(--ink, #925807);
+  outline-offset: 2px;
+}
+
+.filterPills {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pill {
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--ink, #925807);
+  background-color: #ffffff;
+  color: var(--ink, #925807);
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.pillActive {
+  background-color: var(--ink, #925807);
+  color: #ffffff;
+}
+
+.cardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.jobCard {
+  background-color: #ffffff;
+  border: 1px solid #808080;
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink, #925807);
+  margin: 0;
+}
+
+.statusTag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #027a48;
+  background-color: #ecfdf3;
+  padding: 3px 8px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.cardDesc {
+  font-size: 13px;
+  line-height: 19px;
+  color: #444;
+  margin: 0;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #ffeed2;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge {
+  font-size: 12px;
+  padding: 4px 8px;
+  background-color: #fbf6ee;
+  border: 1px solid #edd5b3;
+  border-radius: 6px;
+  color: var(--ink, #925807);
+}
+
+.badgeSalary {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  background-color: #fff9ed;
+  border: 1px solid var(--ink, #925807);
+  border-radius: 6px;
+  color: var(--ink, #925807);
+}
+
+.cardActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btnDetails,
+.btnApplications {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  min-height: 36px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.btnDetails {
+  color: var(--ink, #925807);
+  border: 1px solid var(--ink, #925807);
+  background-color: #ffffff;
+}
+
+.btnApplications {
+  color: #ffffff;
+  background-color: var(--ink, #925807);
+}
+
+.emptyState {
+  padding: 32px 16px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+/* Regras Mobile (<= 760px) */
+@media (max-width: 760px) {
+  .topHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btnNewJob {
+    width: 100%;
+    min-height: 44px;
+  }
+
+  .cardFooter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cardActions {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 8px;
+  }
+
+  .btnDetails,
+  .btnApplications {
+    width: 100%;
+    min-height: 44px;
+  }
+}
