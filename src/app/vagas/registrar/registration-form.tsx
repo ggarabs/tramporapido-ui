@@ -1,8 +1,10 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import RepresentativeShell from "../representative-shell";
 import styles from "./registration.module.css";
+import { taskApi } from "@/lib/api";
 
 const fields = [
   { name: "title", label: "Vaga", placeholder: "Título da vaga", required: true },
@@ -29,12 +31,15 @@ const example: Record<string, string> = {
 const initialValues: Record<string, string> = { date: "2026-10-18" };
 
 export default function RegistrationForm() {
+  const router = useRouter();
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [validated, setValidated] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [apiError, setApiError] = useState("");
   const form = useRef<HTMLFormElement>(null);
 
-  function continueRegistration(event: FormEvent<HTMLFormElement>) {
+  async function continueRegistration(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const invalid: Record<string, string> = {};
     fields.forEach(({ name, required }) => {
@@ -44,9 +49,30 @@ export default function RegistrationForm() {
       invalid.salary = "Informe um valor como 1.900,00.";
     }
     setErrors(invalid);
-    setValidated(Object.keys(invalid).length === 0);
+    setValidated(false);
     if (Object.keys(invalid).length) {
       form.current?.querySelector<HTMLElement>(`[name="${Object.keys(invalid)[0]}"]`)?.focus();
+      return;
+    }
+    try {
+      setSaving(true);
+      setApiError("");
+      const created = await taskApi.create({
+        title: values.title.trim(),
+        description: values.description.trim(),
+        city: values.city.trim(),
+        neighborhood: values.district.trim(),
+        status: "OPEN",
+        modality: values.modality === "Remoto" ? "HOME_OFFICE" : values.modality === "Híbrido" ? "HYBRID" : "IN_PERSON",
+        dateTimeOpen: values.date ? `${values.date}T00:00:00` : undefined,
+        income: Number((values.salary ?? "").replace(/\./g, "").replace(",", ".")),
+      });
+      sessionStorage.setItem("created-task-id", created.id);
+      router.push("/vagas/publicada");
+    } catch (cause) {
+      setApiError(cause instanceof Error ? cause.message : "Não foi possível cadastrar a vaga.");
+    } finally {
+      setSaving(false);
     }
   }
 
@@ -92,14 +118,15 @@ export default function RegistrationForm() {
         </section>
         <div className={styles.actions}>
           <button type="button" onClick={cancelRegistration}>Cancelar</button>
-          <button type="submit" className={styles.primary}>Continuar</button>
+          <button type="submit" className={styles.primary} disabled={saving}>{saving ? "Enviando…" : "Publicar vaga"}</button>
         </div>
         <button type="button" className={styles.example} onClick={() => {
           setValues(example); setErrors({}); setValidated(false);
         }}>Preencher com exemplo</button>
         <p role="status" className={styles.hint}>
-          {validated && "Informações validadas. A revisão e a publicação estarão disponíveis em uma próxima etapa; nenhuma vaga foi publicada."}
+          {validated && "Informações validadas."}
         </p>
+        {apiError && <p role="alert" className={styles.error}>{apiError}</p>}
       </form>
     </RepresentativeShell>
   );
