@@ -38,7 +38,7 @@ export const taskApi = {
 export const userApi = {
   csrf: () => request<{ token: string }>(USER_API_URL, "/api/auth/csrf"),
   login: (email: string, password: string, csrfToken: string) =>
-    request<{ email: string; message: string }>(USER_API_URL, "/api/auth/login", {
+    request<{ id: string; email: string; role: "CANDIDATE" | "CONTRACTOR" | "INTERMEDIARY" | "ADMINISTRATOR"; message: string }>(USER_API_URL, "/api/auth/login", {
       method: "POST",
       headers: { "X-XSRF-TOKEN": csrfToken },
       body: JSON.stringify({ email, password }),
