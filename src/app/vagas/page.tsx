@@ -7,7 +7,9 @@ import styles from "./vagas.module.css";
 import { taskApi, type Task } from "@/lib/api";
 
 const modalityLabel: Record<Task["modality"], string> = {
-  IN_PERSON: "Presencial", HOME_OFFICE: "Remoto", HYBRID: "Híbrido",
+  IN_PERSON: "Presencial",
+  HOME_OFFICE: "Remoto",
+  HYBRID: "Híbrido",
 };
 
 export default function VagasPage() {
@@ -18,9 +20,16 @@ export default function VagasPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    taskApi.list()
+    taskApi
+      .list()
       .then(setVagas)
-      .catch((cause: unknown) => setError(cause instanceof Error ? cause.message : "Não foi possível carregar as vagas."))
+      .catch((cause: unknown) =>
+        setError(
+          cause instanceof Error
+            ? cause.message
+            : "Não foi possível carregar as vagas.",
+        ),
+      )
       .finally(() => setLoading(false));
   }, []);
 
@@ -42,9 +51,11 @@ export default function VagasPage() {
         <div className={styles.topHeader}>
           <div>
             <h1>Oportunidades</h1>
-            <p className={styles.subtext}>Consulte e acompanhe as vagas registadas no sistema.</p>
+            <p className={styles.subtext}>
+              Consulte e acompanhe as vagas registadas no sistema.
+            </p>
           </div>
-          <Link href="/vagas/registrar" className={styles.btnNewJob}>
+          <Link href="/jobs/register" className={styles.btnNewJob}>
             + Nova vaga
           </Link>
         </div>
@@ -82,20 +93,34 @@ export default function VagasPage() {
             <article key={vaga.id} className={styles.jobCard}>
               <div className={styles.cardHeader}>
                 <h2 className={styles.cardTitle}>{vaga.title}</h2>
-                <span className={styles.statusTag}>{vaga.status === "OPEN" ? "Ativa" : vaga.status}</span>
+                <span className={styles.statusTag}>
+                  {vaga.status === "OPEN" ? "Ativa" : vaga.status}
+                </span>
               </div>
 
               <p className={styles.cardDesc}>{vaga.description}</p>
 
               <div className={styles.cardFooter}>
                 <div className={styles.badges}>
-                  <span className={styles.badge}>{modalityLabel[vaga.modality]}</span>
-                  <span className={styles.badge}>{vaga.city}{vaga.neighborhood ? `, ${vaga.neighborhood}` : ""}</span>
-                  {vaga.income != null && <span className={styles.badgeSalary}>{vaga.income.toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}</span>}
+                  <span className={styles.badge}>
+                    {modalityLabel[vaga.modality]}
+                  </span>
+                  <span className={styles.badge}>
+                    {vaga.city}
+                    {vaga.neighborhood ? `, ${vaga.neighborhood}` : ""}
+                  </span>
+                  {vaga.income != null && (
+                    <span className={styles.badgeSalary}>
+                      {vaga.income.toLocaleString("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      })}
+                    </span>
+                  )}
                 </div>
 
                 <div className={styles.cardActions}>
-                  <Link href={`/vagas/${vaga.id}`} className={styles.btnDetails}>
+                  <Link href={`/jobs/${vaga.id}`} className={styles.btnDetails}>
                     Detalhes
                   </Link>
                   <Link href="/candidaturas" className={styles.btnApplications}>
@@ -107,7 +132,9 @@ export default function VagasPage() {
           ))}
 
           {!loading && !error && vagasFiltradas.length === 0 && (
-            <p className={styles.emptyState}>Nenhuma oportunidade encontrada para a sua busca.</p>
+            <p className={styles.emptyState}>
+              Nenhuma oportunidade encontrada para a sua busca.
+            </p>
           )}
         </div>
       </div>

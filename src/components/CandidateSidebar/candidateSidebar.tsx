@@ -20,7 +20,7 @@ export default function CandidateSidebar({
 
       <nav aria-label="Área do candidato" className="mt-4 grid gap-3">
         <Link
-          href="/vagas"
+          href="/jobs"
           aria-current={active === "jobs" ? "page" : undefined}
           className={`flex min-h-[44px] items-center justify-center rounded-lg border p-2 text-center font-medium no-underline transition-colors ${
             active === "jobs"
@@ -40,7 +40,7 @@ export default function CandidateSidebar({
         </button>
 
         <Link
-          href="/curriculo"
+          href="/resume"
           aria-current={active === "resume" ? "page" : undefined}
           className={`flex min-h-[44px] items-center justify-center rounded-lg border p-2 text-center font-medium no-underline transition-colors ${
             active === "resume"

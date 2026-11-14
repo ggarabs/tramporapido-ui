@@ -42,14 +42,14 @@ export default function Home() {
             <article className={styles.card}>
               <h2>Buscar vagas</h2>
               <p>Veja oportunidades e conheça os requisitos.</p>
-              <Link className={styles.primary} href="/vagas">
+              <Link className={styles.primary} href="/jobs">
                 Me candidatar a vagas
               </Link>
             </article>
             <article className={styles.card}>
               <h2>Minhas candidaturas</h2>
               <p>Acompanhe as vagas em que você se inscreveu.</p>
-              <Link className={styles.secondary} href="/vagas">
+              <Link className={styles.secondary} href="/jobs">
                 Ver candidaturas
               </Link>
             </article>
@@ -62,7 +62,7 @@ export default function Home() {
               candidatar, você poderá escrever uma mensagem ao representante.
             </p>
           </section>
-          <Link className={styles.editResume} href="/curriculo/escolaridade">
+          <Link className={styles.editResume} href="/resume">
             Editar meu currículo
           </Link>
         </main>

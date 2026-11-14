@@ -2,8 +2,8 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "/", label: "Início" },
-  { href: "/vagas", label: "Processos" },
-  { href: "/curriculo/escolaridade", label: "Documentos" },
+  { href: "/jobs", label: "Processos" },
+  { href: "/resume", label: "Documentos" },
 ];
 
 export default function Header() {
@@ -35,7 +35,7 @@ export default function Header() {
         ))}
 
         <Link
-          href="/curriculo/escolaridade"
+          href="/resume"
           className="grid min-w-[110px] min-h-11 place-items-center border border-ink rounded-lg text-ink font-medium no-underline hover:bg-ink hover:text-white transition-colors"
         >
           Login

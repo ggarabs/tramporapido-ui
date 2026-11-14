@@ -480,7 +480,7 @@ export default function ResumePage() {
           </section>
 
           <Link
-            href="/vagas"
+            href="/jobs"
             className="w-full sm:w-fit inline-flex min-h-11 items-center justify-center rounded-lg border border-ink bg-ink px-6 text-sm font-semibold text-white no-underline transition-all hover:brightness-95"
           >
             Buscar vagas

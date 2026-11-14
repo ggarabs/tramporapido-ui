@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import RepresentativeShell from "../vagas/representative-shell";
+import RepresentativeShell from "../jobs/representative-shell";
 
 interface Application {
   id: string;

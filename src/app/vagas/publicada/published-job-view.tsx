@@ -29,25 +29,33 @@ export default function PublishedJobView() {
 
       <div className={styles.publishedColumns}>
         {/* Coluna 1: Resumo com os dados da vaga */}
-        <section className={`${styles.card} ${styles.summary}`} aria-labelledby="summary-heading">
+        <section
+          className={`${styles.card} ${styles.summary}`}
+          aria-labelledby="summary-heading"
+        >
           <h2 id="summary-heading">{defaultJob.title}</h2>
 
           <div>
             <span className={styles.hint}>Período</span>
-            <p><strong>{defaultJob.period}</strong></p>
+            <p>
+              <strong>{defaultJob.period}</strong>
+            </p>
           </div>
 
           <div>
             <span className={styles.hint}>Modalidade e Local</span>
             <p>
-              <strong>{defaultJob.modality}</strong> — {defaultJob.city}/{defaultJob.state} ({defaultJob.district})
+              <strong>{defaultJob.modality}</strong> — {defaultJob.city}/
+              {defaultJob.state} ({defaultJob.district})
             </p>
             <p className={styles.hint}>{defaultJob.address}</p>
           </div>
 
           <div>
             <span className={styles.hint}>Salário</span>
-            <p><strong>R$ {defaultJob.salary}</strong></p>
+            <p>
+              <strong>R$ {defaultJob.salary}</strong>
+            </p>
           </div>
 
           <div>
@@ -64,7 +72,9 @@ export default function PublishedJobView() {
         </section>
 
         {/* Coluna 2: Ações de Gestão */}
-        <aside className={`${styles.card} ${styles.jobActions} ${styles.management}`}>
+        <aside
+          className={`${styles.card} ${styles.jobActions} ${styles.management}`}
+        >
           <h3>Gestão da vaga</h3>
           <p className={styles.hint}>
             Acompanhe as candidaturas ou cadastre uma nova vaga.
@@ -74,13 +84,9 @@ export default function PublishedJobView() {
             Ver candidaturas (0)
           </Link>
 
-          <Link href="/vagas/registrar">
-            Cadastrar outra vaga
-          </Link>
+          <Link href="/jobs/register">Cadastrar outra vaga</Link>
 
-          <Link href="/vagas">
-            Ir para listagem de vagas
-          </Link>
+          <Link href="/jobs">Ir para listagem de vagas</Link>
         </aside>
       </div>
     </RepresentativeShell>
