@@ -54,22 +54,22 @@ export default function RepresentativeShell({ children }: ShellProps) {
             </h2>
             <nav>
               <Link
-                href="/vagas/registrar"
+                href="/jobs/register"
                 className={styles.primary}
                 onClick={closeMenuMobile}
               >
                 Registrar vaga
               </Link>
-              <Link href="/vagas" onClick={closeMenuMobile}>
+              <Link href="/jobs" onClick={closeMenuMobile}>
                 Gerenciar vagas
               </Link>
-              <Link href="/vagas" onClick={closeMenuMobile}>
+              <Link href="/jobs" onClick={closeMenuMobile}>
                 Perfil
               </Link>
-              <Link href="/vagas" onClick={closeMenuMobile}>
+              <Link href="/jobs" onClick={closeMenuMobile}>
                 Configurações
               </Link>
-              <Link href="/vagas" onClick={closeMenuMobile}>
+              <Link href="/jobs" onClick={closeMenuMobile}>
                 Suporte e dúvidas
               </Link>
             </nav>

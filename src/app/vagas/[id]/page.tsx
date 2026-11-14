@@ -17,10 +17,16 @@ interface Candidatura {
   status: string;
 }
 
-export default function VagaDetalhePage({ params }: { params: Promise<{ id: string }> }) {
+export default function VagaDetalhePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = use(params);
 
-  const [activeView, setActiveView] = useState<"resumo" | "candidaturas" | "duvidas">("resumo");
+  const [activeView, setActiveView] = useState<
+    "resumo" | "candidaturas" | "duvidas"
+  >("resumo");
   const [novaPergunta, setNovaPergunta] = useState("");
   const [duvidas, setDuvidas] = useState<Duvida[]>([
     {
@@ -31,24 +37,37 @@ export default function VagaDetalhePage({ params }: { params: Promise<{ id: stri
   ]);
 
   const [candidaturas, setCandidaturas] = useState<Candidatura[]>([
-    { id: "946160bf-f5a3-47ea-b2d8-8ff78b662ff1", candidateId: "11111111-1111-1111-1111-111111111111", status: "PENDING" },
+    {
+      id: "946160bf-f5a3-47ea-b2d8-8ff78b662ff1",
+      candidateId: "11111111-1111-1111-1111-111111111111",
+      status: "PENDING",
+    },
   ]);
 
   function handleEnviarPergunta(e: React.FormEvent) {
     e.preventDefault();
     if (!novaPergunta.trim()) return;
-    setDuvidas([...duvidas, { id: String(Date.now()), pergunta: novaPergunta.trim() }]);
+    setDuvidas([
+      ...duvidas,
+      { id: String(Date.now()), pergunta: novaPergunta.trim() },
+    ]);
     setNovaPergunta("");
   }
 
   function handleAlterarStatus(appId: string, novoStatus: string) {
-    setCandidaturas(candidaturas.map((c) => (c.id === appId ? { ...c, status: novoStatus } : c)));
+    setCandidaturas(
+      candidaturas.map((c) =>
+        c.id === appId ? { ...c, status: novoStatus } : c,
+      ),
+    );
   }
 
   return (
     <RepresentativeShell>
       <h1>Gerenciamento da vaga</h1>
-      <p className={styles.hint}>Nº {id.substring(0, 8)} • Informações detalhadas da oportunidade</p>
+      <p className={styles.hint}>
+        Nº {id.substring(0, 8)} • Informações detalhadas da oportunidade
+      </p>
 
       <div className={styles.publishedColumns}>
         {/* Coluna Principal: Alterna entre Resumo, Candidaturas e Dúvidas */}
@@ -56,28 +75,56 @@ export default function VagaDetalhePage({ params }: { params: Promise<{ id: stri
           {activeView === "resumo" && (
             <>
               <h2>Auxiliar administrativo</h2>
-              <p className={styles.muted}>Nº 1024 • CLT • Período integral • Presencial</p>
+              <p className={styles.muted}>
+                Nº 1024 • CLT • Período integral • Presencial
+              </p>
               <p>Salário: R$ 1.900,00 / mês</p>
               <p>Centro • São Paulo / SP</p>
               <h3>Descrição e requisitos</h3>
-              <p>Organize documentos, atenda clientes e apoie rotinas administrativas. Ensino médio completo e organização.</p>
+              <p>
+                Organize documentos, atenda clientes e apoie rotinas
+                administrativas. Ensino médio completo e organização.
+              </p>
             </>
           )}
 
           {activeView === "candidaturas" && (
             <>
               <h2>Candidaturas recebidas</h2>
-              <p className={styles.muted}>Total: {candidaturas.length} inscrito(s)</p>
+              <p className={styles.muted}>
+                Total: {candidaturas.length} inscrito(s)
+              </p>
               <div style={{ display: "grid", gap: "12px", width: "100%" }}>
                 {candidaturas.map((c) => (
-                  <div key={c.id} style={{ border: "1px solid #808080", padding: "12px", borderRadius: "8px" }}>
-                    <p><strong>Candidato:</strong> {c.candidateId.substring(0, 8)}...</p>
-                    <p><strong>Status:</strong> {c.status}</p>
-                    <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
-                      <button type="button" className={styles.primary} onClick={() => handleAlterarStatus(c.id, "APPROVED")}>
+                  <div
+                    key={c.id}
+                    style={{
+                      border: "1px solid #808080",
+                      padding: "12px",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <p>
+                      <strong>Candidato:</strong>{" "}
+                      {c.candidateId.substring(0, 8)}...
+                    </p>
+                    <p>
+                      <strong>Status:</strong> {c.status}
+                    </p>
+                    <div
+                      style={{ display: "flex", gap: "8px", marginTop: "8px" }}
+                    >
+                      <button
+                        type="button"
+                        className={styles.primary}
+                        onClick={() => handleAlterarStatus(c.id, "APPROVED")}
+                      >
                         Aprovar
                       </button>
-                      <button type="button" onClick={() => handleAlterarStatus(c.id, "REJECTED")}>
+                      <button
+                        type="button"
+                        onClick={() => handleAlterarStatus(c.id, "REJECTED")}
+                      >
                         Rejeitar
                       </button>
                     </div>
@@ -90,7 +137,10 @@ export default function VagaDetalhePage({ params }: { params: Promise<{ id: stri
           {activeView === "duvidas" && (
             <>
               <h2>Dúvidas e comentários</h2>
-              <form onSubmit={handleEnviarPergunta} style={{ display: "grid", gap: "8px", width: "100%" }}>
+              <form
+                onSubmit={handleEnviarPergunta}
+                style={{ display: "grid", gap: "8px", width: "100%" }}
+              >
                 <label htmlFor="duvida">Enviar pergunta ao contratante:</label>
                 <input
                   id="duvida"
@@ -100,7 +150,11 @@ export default function VagaDetalhePage({ params }: { params: Promise<{ id: stri
                   onChange={(e) => setNovaPergunta(e.target.value)}
                   style={{ width: "100%" }}
                 />
-                <button type="submit" className={styles.primary} style={{ width: "160px" }}>
+                <button
+                  type="submit"
+                  className={styles.primary}
+                  style={{ width: "160px" }}
+                >
                   Enviar dúvida
                 </button>
               </form>
@@ -108,14 +162,26 @@ export default function VagaDetalhePage({ params }: { params: Promise<{ id: stri
               <h3 style={{ marginTop: "16px" }}>Perguntas registradas</h3>
               <div style={{ display: "grid", gap: "12px", width: "100%" }}>
                 {duvidas.map((d) => (
-                  <div key={d.id} style={{ border: "1px solid #808080", padding: "12px", borderRadius: "8px" }}>
-                    <p><strong>P:</strong> {d.pergunta}</p>
+                  <div
+                    key={d.id}
+                    style={{
+                      border: "1px solid #808080",
+                      padding: "12px",
+                      borderRadius: "8px",
+                    }}
+                  >
+                    <p>
+                      <strong>P:</strong> {d.pergunta}
+                    </p>
                     {d.resposta ? (
                       <p className={styles.muted} style={{ marginTop: "6px" }}>
                         <strong>R:</strong> {d.resposta}
                       </p>
                     ) : (
-                      <p className={styles.muted} style={{ fontStyle: "italic", marginTop: "6px" }}>
+                      <p
+                        className={styles.muted}
+                        style={{ fontStyle: "italic", marginTop: "6px" }}
+                      >
                         Aguardando resposta do contratante.
                       </p>
                     )}
@@ -137,7 +203,9 @@ export default function VagaDetalhePage({ params }: { params: Promise<{ id: stri
           </button>
           <button
             type="button"
-            className={activeView === "candidaturas" ? styles.primary : undefined}
+            className={
+              activeView === "candidaturas" ? styles.primary : undefined
+            }
             onClick={() => setActiveView("candidaturas")}
           >
             Acompanhar candidaturas
@@ -149,7 +217,10 @@ export default function VagaDetalhePage({ params }: { params: Promise<{ id: stri
           >
             Dúvidas / comentários
           </button>
-          <Link href="/vagas" style={{ textAlign: "center", textDecoration: "none" }}>
+          <Link
+            href="/jobs"
+            style={{ textAlign: "center", textDecoration: "none" }}
+          >
             Voltar para lista
           </Link>
         </nav>

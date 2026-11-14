@@ -20,7 +20,8 @@ const initialQuestions: Question[] = [
     author: "Mariana Silva",
     date: "20/10/2026",
     text: "O modelo de trabalho aceita flexibilidade de horário para estudantes no período noturno?",
-    answer: "Olá, Mariana! Sim, a jornada de 8 horas pode ser ajustada entre 08:00 e 17:00 para não coincidir com as aulas.",
+    answer:
+      "Olá, Mariana! Sim, a jornada de 8 horas pode ser ajustada entre 08:00 e 17:00 para não coincidir com as aulas.",
     answeredAt: "21/10/2026",
   },
   {
@@ -28,7 +29,8 @@ const initialQuestions: Question[] = [
     author: "Lucas Ferreira",
     date: "19/10/2026",
     text: "O vale-transporte cobre deslocamentos intermunicipais ou apenas linhas municipais?",
-    answer: "Olá, Lucas! O benefício cobre o trajeto completo residência-trabalho via transporte público intermunicipal ou municipal.",
+    answer:
+      "Olá, Lucas! O benefício cobre o trajeto completo residência-trabalho via transporte público intermunicipal ou municipal.",
     answeredAt: "19/10/2026",
   },
 ];
@@ -53,7 +55,9 @@ export default function JobQuestionsView() {
     setQuestions([questionObj, ...questions]);
     setNewQuestion("");
     setAuthorName("");
-    setFeedback("A sua dúvida foi enviada e será respondida pelo responsável da vaga!");
+    setFeedback(
+      "A sua dúvida foi enviada e será respondida pelo responsável da vaga!",
+    );
   }
 
   return (
@@ -61,7 +65,7 @@ export default function JobQuestionsView() {
       <div className={styles.container}>
         <div className={styles.header}>
           <div>
-            <Link href="/vagas" className={styles.backLink}>
+            <Link href="/jobs" className={styles.backLink}>
               ← Voltar às vagas
             </Link>
             <h1>Dúvidas e Comentários</h1>
@@ -75,7 +79,8 @@ export default function JobQuestionsView() {
         <section className={styles.card}>
           <h2>Tem alguma pergunta sobre a vaga?</h2>
           <p className={styles.hint}>
-            As perguntas públicas ajudam outros candidatos a compreender os requisitos da oportunidade.
+            As perguntas públicas ajudam outros candidatos a compreender os
+            requisitos da oportunidade.
           </p>
 
           <form onSubmit={handleSendQuestion} className={styles.form}>
@@ -127,13 +132,17 @@ export default function JobQuestionsView() {
                 {q.answer ? (
                   <div className={styles.replyBox}>
                     <div className={styles.replyHeader}>
-                      <span className={styles.badgeRepresentante}>Resposta da Empresa</span>
+                      <span className={styles.badgeRepresentante}>
+                        Resposta da Empresa
+                      </span>
                       <span className={styles.date}>{q.answeredAt}</span>
                     </div>
                     <p className={styles.replyText}>{q.answer}</p>
                   </div>
                 ) : (
-                  <p className={styles.pendingAnswer}>Aguardando resposta da empresa...</p>
+                  <p className={styles.pendingAnswer}>
+                    Aguardando resposta da empresa...
+                  </p>
                 )}
               </article>
             ))}

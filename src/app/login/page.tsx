@@ -18,7 +18,7 @@ export default function LoginPage() {
     try {
       const { token } = await userApi.csrf();
       await userApi.login(email, password, token);
-      router.push("/vagas");
+      router.push("/jobs");
     } catch (cause) {
       setError(
         cause instanceof Error ? cause.message : "Não foi possível entrar.",
