@@ -2,19 +2,19 @@ import Link from "next/link";
 
 const navLinks = [
   { href: "/", label: "Início" },
-  { href: "/jobs", label: "Processos" },
-  { href: "/resume", label: "Documentos" },
+  { href: "/jobs", label: "Vagas" },
+  { href: "/about", label: "Sobre" },
 ];
 
 export default function Header() {
   return (
-    <header className="flex min-h-[76px] sm:h-[92px] flex-wrap sm:flex-nowrap items-center justify-between gap-4 p-4 sm:px-6 border-b border-neutral-200 bg-white text-ink">
+    <header className="flex min-h-[76px] sm:h-[92px] w-full flex-wrap sm:flex-nowrap items-center justify-between gap-4 p-4 sm:px-6 border-b border-[#a86a09] bg-[#925807] text-white">
       <Link
         href="/"
         aria-label="tramporapido — início"
-        className="flex items-center gap-3 text-xl sm:text-2xl font-semibold text-inherit no-underline"
+        className="flex items-center gap-3 text-xl sm:text-2xl font-semibold text-white no-underline"
       >
-        <span className="grid size-10 place-items-center rounded-lg bg-ink text-white text-[22px]">
+        <span className="grid size-10 place-items-center rounded-lg bg-white text-[#925807] text-[22px] font-bold">
           T
         </span>
         <span>tramporapido</span>
@@ -28,7 +28,7 @@ export default function Header() {
           <Link
             key={label}
             href={href}
-            className="text-muted no-underline hover:underline"
+            className="text-white/90 no-underline hover:text-white hover:underline transition-colors"
           >
             {label}
           </Link>
@@ -36,7 +36,7 @@ export default function Header() {
 
         <Link
           href="/resume"
-          className="grid min-w-[110px] min-h-11 place-items-center border border-ink rounded-lg text-ink font-medium no-underline hover:bg-ink hover:text-white transition-colors"
+          className="grid min-w-[110px] min-h-11 place-items-center border border-white rounded-lg text-white font-medium no-underline hover:bg-white hover:text-[#925807] transition-colors"
         >
           Login
         </Link>
