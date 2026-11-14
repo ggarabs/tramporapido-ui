@@ -3,7 +3,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="w-full min-w-0 flex-1 flex flex-col gap-6">
-      {/* Título e Subtítulo */}
       <div>
         <h1 className="m-0 text-2xl font-semibold leading-[35px] text-ink">
           Encontre seu próximo trabalho
@@ -13,7 +12,6 @@ export default function Home() {
         </p>
       </div>
 
-      {/* Grid de Atalhos principais (Agora ocupando 100% da largura de forma flexível) */}
       <section
         className="grid grid-cols-1 md:grid-cols-2 gap-5 w-full"
         aria-label="Atalhos principais"
@@ -51,7 +49,6 @@ export default function Home() {
         </article>
       </section>
 
-      {/* Bloco de Atualizações */}
       <section
         className="rounded-lg border border-default bg-white p-5 w-full shadow-sm"
         aria-labelledby="updates-title"
@@ -65,7 +62,6 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Botão de Editar Currículo */}
       <div>
         <Link
           href="/resume"
