@@ -8,6 +8,7 @@ pipeline {
     environment {
         AWS_DEFAULT_REGION = 'us-east-1'
         AWS_PAGER = ''
+        SOURCE_DIR = '/workspace/tramporapido-ui'
     }
 
     stages {
@@ -23,7 +24,10 @@ pipeline {
 
         stage('Instalar, verificar e montar') {
             steps {
-                sh 'docker run --rm --volumes-from "$HOSTNAME" -w "$WORKSPACE" node:22-bookworm-slim sh -c "npm ci && npm run lint && npm run build"'
+                sh '''
+                    docker run --rm --volumes-from "$HOSTNAME" -w "$SOURCE_DIR" \
+                      node:22-bookworm-slim sh -c 'npm ci && npm run lint && npm run build'
+                '''
             }
         }
 
@@ -54,6 +58,7 @@ pipeline {
                     sh '''
                         . ./.ec2.env
                         UI_ORIGIN="http://${PUBLIC_IP}:3000"
+                        cd "$SOURCE_DIR"
                         /workspace/jenkins/scripts/deploy-compose.sh \
                           tramporapido-ui "$PUBLIC_IP" \
                           "http://${TASK_PUBLIC_IP}:8081" "http://${USER_PUBLIC_IP}:8080"
