@@ -23,7 +23,8 @@ const mockCandidaturas: Candidatura[] = [
     telefone: "(11) 98765-4321",
     vaga: "Auxiliar Administrativo",
     data: "28/10/2026",
-    experiencia: "2 anos de experiência em rotinas administrativas, gestão de arquivos e atendimento ao público.",
+    experiencia:
+      "2 anos de experiência em rotinas administrativas, gestão de arquivos e atendimento ao público.",
     status: "Em análise",
   },
   {
@@ -33,7 +34,8 @@ const mockCandidaturas: Candidatura[] = [
     telefone: "(11) 97123-4567",
     vaga: "Auxiliar Administrativo",
     data: "29/10/2026",
-    experiencia: "Ensino médio completo, facilidade com ferramentas Office e atendimento presencial.",
+    experiencia:
+      "Ensino médio completo, facilidade com ferramentas Office e atendimento presencial.",
     status: "Pendente",
   },
   {
@@ -43,7 +45,8 @@ const mockCandidaturas: Candidatura[] = [
     telefone: "(11) 99876-1122",
     vaga: "Recepcionista Comercial",
     data: "25/10/2026",
-    experiencia: "Experiência prévia de 3 anos em receção corporativa e gestão de marcações de salas de reunião.",
+    experiencia:
+      "Experiência prévia de 3 anos em receção corporativa e gestão de marcações de salas de reunião.",
     status: "Aprovada",
   },
 ];
@@ -51,7 +54,8 @@ const mockCandidaturas: Candidatura[] = [
 export default function CandidaturasView() {
   const [lista, setLista] = useState<Candidatura[]>(mockCandidaturas);
   const [filtroStatus, setFiltroStatus] = useState("Todas");
-  const [candidaturaSelecionada, setCandidaturaSelecionada] = useState<Candidatura | null>(null);
+  const [candidaturaSelecionada, setCandidaturaSelecionada] =
+    useState<Candidatura | null>(null);
 
   const filtros = ["Todas", "Pendente", "Em análise", "Aprovada", "Rejeitada"];
 
@@ -65,10 +69,12 @@ export default function CandidaturasView() {
 
     setLista((prev) =>
       prev.map((c) =>
-        c.id === candidaturaSelecionada.id ? { ...c, status: novoStatus } : c
-      )
+        c.id === candidaturaSelecionada.id ? { ...c, status: novoStatus } : c,
+      ),
     );
-    setCandidaturaSelecionada((prev) => (prev ? { ...prev, status: novoStatus } : null));
+    setCandidaturaSelecionada((prev) =>
+      prev ? { ...prev, status: novoStatus } : null,
+    );
   }
 
   return (
@@ -77,11 +83,11 @@ export default function CandidaturasView() {
         <div className={styles.header}>
           <h1>Acompanhamento de Candidaturas</h1>
           <p className={styles.hint}>
-            Analise os perfis recebidos e gira as etapas de seleção de cada profissional.
+            Analise os perfis recebidos e gira as etapas de seleção de cada
+            profissional.
           </p>
         </div>
 
-        {/* Filtros rápidos em pílulas */}
         <div className={styles.filterPills}>
           {filtros.map((f) => (
             <button
@@ -95,7 +101,6 @@ export default function CandidaturasView() {
           ))}
         </div>
 
-        {/* Lista de candidatos */}
         <div className={styles.candidatesGrid}>
           {candidaturasFiltradas.map((cand) => (
             <article key={cand.id} className={styles.candidateCard}>
@@ -109,10 +114,10 @@ export default function CandidaturasView() {
                     cand.status === "Aprovada"
                       ? styles.badgeSuccess
                       : cand.status === "Rejeitada"
-                      ? styles.badgeDanger
-                      : cand.status === "Em análise"
-                      ? styles.badgeWarning
-                      : styles.badgeNeutral
+                        ? styles.badgeDanger
+                        : cand.status === "Em análise"
+                          ? styles.badgeWarning
+                          : styles.badgeNeutral
                   }`}
                 >
                   {cand.status}
@@ -134,11 +139,12 @@ export default function CandidaturasView() {
           ))}
 
           {candidaturasFiltradas.length === 0 && (
-            <p className={styles.empty}>Nenhuma candidatura encontrada para este filtro.</p>
+            <p className={styles.empty}>
+              Nenhuma candidatura encontrada para este filtro.
+            </p>
           )}
         </div>
 
-        {/* Modal / Popup de Detalhes da Candidatura */}
         {candidaturaSelecionada && (
           <div
             className={styles.modalOverlay}
@@ -187,7 +193,9 @@ export default function CandidaturasView() {
                     <button
                       type="button"
                       className={`${styles.statusBtn} ${
-                        candidaturaSelecionada.status === "Em análise" ? styles.selectedWarning : ""
+                        candidaturaSelecionada.status === "Em análise"
+                          ? styles.selectedWarning
+                          : ""
                       }`}
                       onClick={() => alterarStatus("Em análise")}
                     >
@@ -196,7 +204,9 @@ export default function CandidaturasView() {
                     <button
                       type="button"
                       className={`${styles.statusBtn} ${
-                        candidaturaSelecionada.status === "Aprovada" ? styles.selectedSuccess : ""
+                        candidaturaSelecionada.status === "Aprovada"
+                          ? styles.selectedSuccess
+                          : ""
                       }`}
                       onClick={() => alterarStatus("Aprovada")}
                     >
@@ -205,7 +215,9 @@ export default function CandidaturasView() {
                     <button
                       type="button"
                       className={`${styles.statusBtn} ${
-                        candidaturaSelecionada.status === "Rejeitada" ? styles.selectedDanger : ""
+                        candidaturaSelecionada.status === "Rejeitada"
+                          ? styles.selectedDanger
+                          : ""
                       }`}
                       onClick={() => alterarStatus("Rejeitada")}
                     >
