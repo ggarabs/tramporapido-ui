@@ -13,11 +13,10 @@ module.exports = {
       colors: {
         ink: "#925807",
         muted: "#2d0f0f",
-      },
-      backgroundColor: {
         cream: "#ffeed2",
       },
       borderColor: {
+        default: "#808080",
         ink: "#925807",
       },
     },
