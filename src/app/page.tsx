@@ -2,9 +2,9 @@ import Link from "next/link";
 import styles from "./home.module.css";
 
 const candidateLinks = [
-  { href: "/vagas", label: "Buscar vagas", active: true },
-  { href: "/vagas", label: "Minhas candidaturas" },
-  { href: "/curriculo/escolaridade", label: "Perfil / Currículo" },
+  { href: "/jobs", label: "Buscar vagas", active: true },
+  { href: "/applications", label: "Minhas candidaturas" },
+  { href: "/resume", label: "Perfil / Currículo" },
 ];
 
 export default function Home() {
